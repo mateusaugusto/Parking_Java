@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d2b0226d-b618-4511-b0fc-081c3e5df4aa">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="CpfCli" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     cliente.`nome` AS cliente_nome,
+     cliente.`cpf` AS cliente_cpf,
+     cliente.`valor_vaga` AS cliente_valor_vaga,
+     cliente.`qtd_meses` AS cliente_qtd_meses,
+     pagamento.`vencimento` AS pagamento_vencimento,
+     pagamento.`data_pagamento` AS pagamento_data_pagamento,
+     pagamento.`baixa` AS pagamento_baixa
+FROM
+     `cliente` cliente INNER JOIN `pagamento` pagamento ON cliente.`id` = pagamento.`cliente_id`
+WHERE
+     cliente.`cpf` = $P{CpfCli}]]>
+	</queryString>
+	<field name="cliente_nome" class="java.lang.String"/>
+	<field name="cliente_cpf" class="java.lang.String"/>
+	<field name="cliente_valor_vaga" class="java.lang.String"/>
+	<field name="cliente_qtd_meses" class="java.lang.Integer"/>
+	<field name="pagamento_vencimento" class="java.sql.Date"/>
+	<field name="pagamento_data_pagamento" class="java.sql.Date"/>
+	<field name="pagamento_baixa" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="ccd74fcf-9c1c-4152-8424-d2c571540194" x="-20" y="0" width="595" height="64"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="85983a2c-f810-4e90-8b15-e9f14aab2266" style="Title" x="0" y="5" width="263" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Pagamentos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7d57e5e6-c691-4df9-904c-4d22506be0aa" style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[clientes]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="8808617f-0a15-4bd9-9a6e-ccd7e42e1190" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="133f8b1f-560c-484c-9888-63b52bed8435" style="Column header" x="0" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a3411ca3-e89e-4de1-b231-d41a73075852" style="Column header" x="79" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="86f239e1-25fe-49e3-b8ae-ac6ee01a7ae6" style="Column header" x="195" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9b2fdf75-156f-408c-b3e5-5e77add78d51" style="Column header" x="287" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[Vencimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="429779ee-0731-4b96-b936-53a1fd7efefd" style="Column header" x="385" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[Data Pagamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8e767519-5cca-460d-84d6-ae3dd12df441" style="Column header" x="474" y="19" width="79" height="15"/>
+				<textElement/>
+				<text><![CDATA[Baixado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="6353ac4c-4c71-4aca-afa0-89b0e80f36b0" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="da6b1a21-4fed-43fe-959a-062c9c298a00" style="Detail" x="79" y="0" width="118" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cliente_cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e317a0c9-6d56-4e32-ae5e-85d5fff82fdb" style="Detail" x="195" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cliente_valor_vaga}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="98dd00c8-53e4-40fe-80a0-d09be3ad5b10" style="Detail" x="287" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pagamento_vencimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="718374c2-5986-4a56-afcf-c7d6822293f8" style="Detail" x="385" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pagamento_data_pagamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c3658380-fe5a-4d9e-8c4a-377d14cb239e" style="Detail" x="474" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pagamento_baixa} == true ? "Baixado" : "Pendente"
+
+]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7405e208-ddad-4f85-a737-e285fb7c9455" style="Detail" x="0" y="0" width="79" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cliente_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="c8086463-6b4b-4a1d-8115-c2d33395bb50" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="fc104e17-03b2-44ef-b776-b860cf6dafd1" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="a8e53a36-4496-4eef-b2ac-7ae6d5e7b198" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="fff0b769-8ffb-4910-9785-124aa416e673" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

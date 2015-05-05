@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5d7f75e5-9bf1-4e04-a570-dee90ce5a656">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     cliente.`nome` AS cliente_nome,
+     cliente.`cpf` AS cliente_cpf,
+     cliente.`ativo` AS cliente_ativo,
+     cliente_vagas.`vagas_id` AS cliente_vagas_vagas_id,
+     cliente_vagas.`data_final` AS cliente_vagas_data_final,
+     cliente_vagas.`data_inicial` AS cliente_vagas_data_inicial
+FROM
+     `cliente` cliente INNER JOIN `cliente_vagas` cliente_vagas ON cliente.`id` = cliente_vagas.`cliente_id`
+WHERE
+     cliente.`ativo` = 1
+ORDER BY
+     cliente.`nome` ASC]]>
+	</queryString>
+	<field name="cliente_nome" class="java.lang.String"/>
+	<field name="cliente_cpf" class="java.lang.String"/>
+	<field name="cliente_ativo" class="java.lang.Boolean"/>
+	<field name="cliente_vagas_vagas_id" class="java.lang.Integer"/>
+	<field name="cliente_vagas_data_final" class="java.sql.Date"/>
+	<field name="cliente_vagas_data_inicial" class="java.sql.Date"/>
+	<variable name="Somatorio" class="java.lang.Integer" resetType="None" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{cliente_vagas_vagas_id}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="3a85769f-0322-4002-b7de-c8fdf9ac9ead" x="-20" y="0" width="595" height="64"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="8ba8afd4-7fea-4eeb-807a-5e2a89b94c29" style="Title" x="0" y="5" width="263" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Cliente Vagas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="e47c6fe4-617a-466e-b844-7c375b2e6c4f" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="56fd48ba-f302-4889-93a1-2e6085de5b69" style="Column header" x="92" y="19" width="92" height="15"/>
+				<textElement/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dedbb8a3-404b-475a-b1d6-6e4170d6bf2a" style="Column header" x="184" y="21" width="92" height="15"/>
+				<textElement/>
+				<text><![CDATA[Cpf]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="15e0f69e-cbe3-4111-a155-ed8f1ebbed7d" style="Column header" x="0" y="19" width="92" height="15"/>
+				<textElement/>
+				<text><![CDATA[Vaga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="49891aa1-6014-4e7c-b9f1-fda2d61b3898" style="Column header" x="278" y="19" width="92" height="15"/>
+				<textElement/>
+				<text><![CDATA[Data Cadastro]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="25f98af2-0fe1-4d2d-b761-56c08a4cccdf" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="2ea4ca6c-a142-49a2-819c-02e7e9f6c2ed" style="Detail" x="184" y="1" width="92" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cliente_cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="42f57137-553a-4d4b-9a7d-aa60b4633f81" style="Detail" x="0" y="1" width="92" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cliente_vagas_vagas_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1a7a8f05-4434-459d-8089-7a85c759d8d5" style="Detail" x="280" y="1" width="92" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cliente_vagas_data_inicial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e20f3851-4c19-475a-8d2c-e27cf7714316" style="Detail" x="92" y="1" width="92" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cliente_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="25c384b9-b7d3-4129-b837-9309a4e023a6" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="907f7f4a-43f3-4c79-87ac-053ecce75ac4" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="2115a3f5-2b9e-4def-8521-1eca450f7df2" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="34d873e6-0a3f-4872-9b5f-19e67dcebac1" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement uuid="aa303d6b-243d-4015-b1c3-8d154c7b2124" x="283" y="8" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Somatorio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8762f9ce-301e-4b97-8e83-14be52bfd36a" x="176" y="8" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

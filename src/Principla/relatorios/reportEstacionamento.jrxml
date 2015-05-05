@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estacionamento" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cdbaa1ec-1ee0-4e6b-90c5-f0fa097f3c82">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     estacionamento.`id` AS estacionamento_id,
+     estacionamento.`nome` AS estacionamento_nome,
+     estacionamento.`cnpj` AS estacionamento_cnpj,
+     estacionamento.`rua` AS estacionamento_rua,
+     estacionamento.`bairro` AS estacionamento_bairro,
+     estacionamento.`numero` AS estacionamento_numero,
+     estacionamento.`cidade` AS estacionamento_cidade,
+     estacionamento.`estado` AS estacionamento_estado,
+     estacionamento.`qtd_vaga` AS estacionamento_qtd_vaga
+FROM
+     `estacionamento` estacionamento]]>
+	</queryString>
+	<field name="estacionamento_nome" class="java.lang.String"/>
+	<field name="estacionamento_cnpj" class="java.lang.String"/>
+	<field name="estacionamento_rua" class="java.lang.String"/>
+	<field name="estacionamento_bairro" class="java.lang.String"/>
+	<field name="estacionamento_numero" class="java.lang.String"/>
+	<field name="estacionamento_cidade" class="java.lang.String"/>
+	<field name="estacionamento_estado" class="java.lang.String"/>
+	<field name="estacionamento_qtd_vaga" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="258bf51e-df0a-4354-abbf-a65ea6eb9edc" x="-20" y="0" width="595" height="64"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="98fe0f7b-8424-429a-b3f7-9dcd42125586" style="Title" x="0" y="5" width="263" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Estacionamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="16fb8726-07d7-45c9-b695-b0b1aa3aef77" style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Dados Estacionamento]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="c63ef03b-4e31-4baf-aca8-01e54e437366" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="409feb50-ab99-402b-9cac-a1fbb5d3f43a" style="Column header" x="0" y="19" width="69" height="15"/>
+				<textElement/>
+				<text><![CDATA[Nom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f5bbc5f5-5f58-4e3c-bd90-795e7c460b9e" style="Column header" x="69" y="19" width="69" height="15"/>
+				<textElement/>
+				<text><![CDATA[CNPJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6ff04dc1-b592-471b-ad47-04c37b397ffe" style="Column header" x="138" y="19" width="69" height="15"/>
+				<textElement/>
+				<text><![CDATA[Rua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b73245be-faef-41f4-806b-04002a4dd845" style="Column header" x="207" y="19" width="69" height="15"/>
+				<textElement/>
+				<text><![CDATA[Bairro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0e030f97-eadc-4f80-a471-840e3c8f6679" style="Column header" x="276" y="19" width="69" height="15"/>
+				<textElement/>
+				<text><![CDATA[Número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9e7a17cd-7095-4f1f-9194-5b163bc66c26" style="Column header" x="345" y="19" width="69" height="15"/>
+				<textElement/>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cae9802a-dbfd-4233-aa4f-02a1e97cffaa" style="Column header" x="414" y="19" width="69" height="15"/>
+				<textElement/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7ff372b3-3826-4bf5-8901-826b32a86528" style="Column header" x="483" y="19" width="69" height="15"/>
+				<textElement/>
+				<text><![CDATA[Qtd Vagas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="b92d2a76-b902-4acf-81f3-67903dc6e8be" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="12f9a8b6-feee-49ee-a159-64f917c5dd47" style="Detail" x="0" y="0" width="69" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estacionamento_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="af35577c-f11f-4793-b7b3-40158ef8dd0b" style="Detail" x="69" y="0" width="69" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estacionamento_cnpj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5a118796-6145-4135-97fc-91bf63079a62" style="Detail" x="138" y="0" width="69" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estacionamento_rua}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="eb4ed895-4748-4d6e-a9fe-2d3bd78078ca" style="Detail" x="207" y="0" width="69" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estacionamento_bairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b6731a9a-bb55-4da1-961e-cea33b88709a" style="Detail" x="276" y="0" width="69" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estacionamento_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0f299c3b-7a80-4544-94c8-474baedabf4d" style="Detail" x="345" y="0" width="69" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estacionamento_cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b44dbad2-9606-4f16-8a9c-0da10a47c9fd" style="Detail" x="414" y="0" width="69" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estacionamento_estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5805b8fb-ecfd-4df2-9aec-9188a2a0c896" style="Detail" x="483" y="0" width="69" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estacionamento_qtd_vaga}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="754dc5bd-169a-4b6f-b444-c3e8e4607871" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="86fb3e8a-87f8-4c51-8dd2-64b5cd51669f" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="120d83b0-03b3-43d9-aca7-b5e0f0324a11" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="738bc59d-a072-4be5-b5d4-35982d5c260a" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

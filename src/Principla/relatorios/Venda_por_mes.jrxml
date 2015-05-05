@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Venda_por_mes" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5cd06e4d-6118-494e-998f-1ea1a125188b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="21"/>
+	<queryString>
+		<![CDATA[select concat(month(data_venda),'/',year(data_venda))as mes_ano, sum(valor_total)total,sum(desconto)desconto
+from cliente c join venda v on c.id = v.cliente_id
+group by mes_ano order by mes_ano]]>
+	</queryString>
+	<field name="mes_ano" class="java.lang.String"/>
+	<field name="total" class="java.lang.Double"/>
+	<field name="desconto" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="49a926a2-e1e9-40d4-b7bd-88240a0a01b1" x="264" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="69e2aa2a-6deb-4ff9-a585-98053b4ef60b" x="22" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[mes_ano]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement uuid="6957d648-cb44-4afa-8aa4-d1a6f00f49d8" x="264" y="10" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9a9ab937-38df-4bed-9a5a-6e422828b509" x="22" y="10" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{mes_ano}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement uuid="c505775f-184c-4dbb-9d52-59dd0450077e" x="309" y="0" width="222" height="42"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Vendas no mes"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes_ano}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{total}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["descontos no mes"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{mes_ano}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{desconto}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>
